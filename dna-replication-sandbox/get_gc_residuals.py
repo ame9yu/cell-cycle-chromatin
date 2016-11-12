@@ -2,6 +2,7 @@
 
 import numpy as np
 import pandas as pd
+import scipy.stats
 import sklearn.linear_model
 import sys
 
@@ -25,10 +26,11 @@ model = sklearn.linear_model.LinearRegression()
 model.fit(xvals, yvals)
 pred = model.predict(xvals)
 data["pred"] = pred
-data["resid"] = data["pred"] - data["readcount"]
+data["resid"] = data["readcount"] - data["pred"]
 
 # Look at model fit
-sys.stderr.write(str(model.score(xvals, yvals))+"\n")
+#sys.stderr.write(str(model.score(xvals, yvals))+"\n")
+sys.stderr.write(str(scipy.stats.pearsonr(xvals, yvals))+"\n")
 
 # Output residuals
 data[["chrom","start","resid","readcount"]].to_csv(sys.stdout, index=False, sep="\t")

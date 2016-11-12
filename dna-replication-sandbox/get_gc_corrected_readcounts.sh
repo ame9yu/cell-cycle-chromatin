@@ -4,8 +4,8 @@ BAMFILE=$1
 GCBINSIZE=$2
 PREFIX=$3
 
-WINDOWS=hg19_windows_10_5.bed
-GENOMEFA=/humgen/atgu1/fs03/wip/gymrek/genomes/hg19.fa
+WINDOWS=hg19_windows_10_5_chr2.bed #hg19_windows_10_5.bed
+GENOMEFA=/Users/gymrek/resources/genomes/hg19/hg19.fa #/humgen/atgu1/fs03/wip/gymrek/genomes/hg19.fa
 GENOMEFILE=hg19.genome
 
 #############################
@@ -29,6 +29,6 @@ paste ${PREFIX}_pileup.tab ${PREFIX}_gcwindows.bed | cut -f 1,2,3,7  > ${PREFIX}
 #############################
 # GET COVERAGE WINDOWS
 #############################
-cat ${PREFIX}_gccorrected_counts.tab | grep -v chrom | awk '{print $1 "\t" $2 "\t" $2+1 "\t" $3}' | \
-    intersectBed -a ${WINDOWS} -b stdin -wa -wb | cut -f 1,2,3,7,8 | bedtools groupby -g 1,2,3 -c 4,5 -o sum > \
+cat ${PREFIX}_gccorrected_counts.tab | grep -v chrom | awk '{print $1 "\t" $2 "\t" $2+1 "\t" $3 "\t" $4}' | \
+    intersectBed -a ${WINDOWS} -b stdin -wa -wb -sorted | cut -f 1,2,3,7,8 | bedtools groupby -g 1,2,3 -c 4,5 -o sum,sum > \
     ${PREFIX}_coveragewindows.bed
