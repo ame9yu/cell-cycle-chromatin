@@ -30,5 +30,5 @@ paste ${PREFIX}_pileup.tab ${PREFIX}_gcwindows.bed | cut -f 1,2,3,7  > ${PREFIX}
 # GET COVERAGE WINDOWS
 #############################
 cat ${PREFIX}_gccorrected_counts.tab | grep -v chrom | awk '{print $1 "\t" $2 "\t" $2+1 "\t" $3}' | \
-    intersectBed -a ${WINDOWS} -b stdin -wa -wb | cut -f 1,2,3,7 | bedtools groupby -g 1,2,3 -c 4 -o sum > \
+    intersectBed -a ${WINDOWS} -b stdin -wa -wb | cut -f 1,2,3,7,8 | bedtools groupby -g 1,2,3 -c 4,5 -o sum > \
     ${PREFIX}_coveragewindows.bed

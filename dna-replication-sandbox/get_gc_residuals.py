@@ -31,4 +31,4 @@ data["resid"] = data["pred"] - data["readcount"]
 sys.stderr.write(str(model.score(xvals, yvals))+"\n")
 
 # Output residuals
-data[["chrom","start","resid"]].to_csv(sys.stdout, index=False, sep="\t")
+data[["chrom","start","resid","readcount"]].to_csv(sys.stdout, index=False, sep="\t")
