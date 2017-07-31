@@ -4,4 +4,7 @@
 *.bed
 *.tab
 *#*
+*.genome
+*.pdf
 data/
+bam/

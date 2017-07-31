@@ -1,12 +1,12 @@
 #!/bin/bash
 
-BAMDIR=/broad/hptmp/alon
+BAMDIR=./bam
 GENOMEFILE=mm9.genome
 
 WINDOWS=mm9_windows_10_5.bed
 CHROM=chr1 # focus on one chrom for now
-OUTDIR=/broad/hptmp/gymrek/counts
-LOGDIR=/broad/hptmp/gymrek/log
+OUTDIR=./counts
+LOGDIR=./log
 
 # Get windows
 bedtools makewindows -g ${GENOMEFILE} -w 10000 -s 5000 > ${WINDOWS}
